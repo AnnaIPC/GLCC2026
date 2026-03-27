@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquid Crystal Animation Viewer</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #dbe3ef;
+      --accent: #315b8a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+    .subtitle {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 820px;
+    }
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 8px 26px rgba(17, 24, 39, 0.06);
+      margin-bottom: 24px;
+    }
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: #f4f8fc;
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      color: #334155;
+      font-size: 0.96rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 8px 26px rgba(17, 24, 39, 0.06);
+    }
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+    .card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.45;
+    }
+    video {
+      width: 100%;
+      border-radius: 12px;
+      background: #000;
+      display: block;
+    }
+    .small {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    code {
+      background: #eef2f7;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Ferroelectric Nematic Liquid Crystal Animations</h1>
+      <p class="subtitle">
+        This page collects short videos from different points of view to illustrate molecular alignment,
+        twist evolution, and wedge-cell geometry. The animations can be viewed directly on a phone after scanning the poster QR code.
+      </p>
+      <div class="note">
+        Replace the example video filenames in this HTML file with your own exported <code>.mp4</code> files.
+        Keep the video files in the same folder as this webpage unless you prefer hosted links.
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>POV 1 — Main view</h2>
+        <p>Primary perspective of the molecular arrangement and twist evolution.</p>
+        <video controls playsinline preload="metadata">
+          <source src="pov1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="small">File placeholder: <code>pov1.mp4</code></div>
+      </article>
+
+      <article class="card">
+        <h2>POV 2 — Side view</h2>
+        <p>Alternative side perspective to visualize thickness and orientation changes more clearly.</p>
+        <video controls playsinline preload="metadata">
+          <source src="pov2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="small">File placeholder: <code>pov2.mp4</code></div>
+      </article>
+
+      <article class="card">
+        <h2>Top view</h2>
+        <p>Top projection of the molecular configuration for comparison of director arrangement.</p>
+        <video controls playsinline preload="metadata">
+          <source src="top_view.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="small">File placeholder: <code>top_view.mp4</code></div>
+      </article>
+
+      <article class="card">
+        <h2>Wedge cell</h2>
+        <p>Visualization of the wedge geometry and spatial variation across the cell.</p>
+        <video controls playsinline preload="metadata">
+          <source src="wedge_cell.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="small">File placeholder: <code>wedge_cell.mp4</code></div>
+      </article>
+    </section>
+
+    <div class="footer">
+      Tip: after uploading this page and your videos to a simple host, generate one QR code that points to the page URL.
+    </div>
+  </div>
+</body>
+</html>
