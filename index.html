@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Liquid Crystal Animation Viewer</title>
+
   <style>
     :root {
       --bg: #f5f7fb;
@@ -63,10 +64,18 @@
       font-size: 0.96rem;
     }
 
+    /* 🔥 GRID: 2 per row */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 18px;
+    }
+
+    /* 📱 Mobile fix */
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .card {
@@ -115,64 +124,77 @@
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
+
     <section class="hero">
       <h1>Ferroelectric Nematic Liquid Crystal Animations</h1>
       <p class="subtitle">
-        This page collects short videos from different points of view to illustrate molecular alignment,
-        twist evolution, and wedge-cell geometry. The animations can be viewed directly on a phone after scanning the poster QR code.
+        Molecular alignment, twist evolution, and wedge-cell geometry from multiple perspectives.
       </p>
       <div class="note">
-        All videos below start automatically and repeat continuously.
+        Videos play automatically and loop continuously.
       </div>
     </section>
 
     <section class="grid">
+
       <article class="card">
         <h2>POV 1 — Main view</h2>
-        <p>Primary perspective of the molecular arrangement and twist evolution.</p>
+        <p>Primary perspective of molecular twist evolution.</p>
         <video autoplay muted loop playsinline preload="auto">
-          <source src="5um_Synpolar Cell_Transition.mp4" type="video/mp4">
-          Your browser does not support the video tag.
+          <source src="pov1.mp4" type="video/mp4">
         </video>
-        <div class="small">File: <code>5um_Synpolar Cell_Transition.mp4</code></div>
       </article>
 
       <article class="card">
         <h2>POV 2 — Side view</h2>
-        <p>Alternative side perspective to visualize thickness and orientation changes more clearly.</p>
+        <p>Side view highlighting thickness and orientation.</p>
         <video autoplay muted loop playsinline preload="auto">
           <source src="pov2.mp4" type="video/mp4">
-          Your browser does not support the video tag.
         </video>
-        <div class="small">File: <code>pov2.mp4</code></div>
       </article>
 
       <article class="card">
         <h2>Top view</h2>
-        <p>Top projection of the molecular configuration for comparison of director arrangement.</p>
+        <p>Projection of director configuration.</p>
         <video autoplay muted loop playsinline preload="auto">
-          <source src="Three States.mp4" type="video/mp4">
-          Your browser does not support the video tag.
+          <source src="three_states.mp4" type="video/mp4">
         </video>
-        <div class="small">File: <code>Three States.mp4</code></div>
       </article>
 
       <article class="card">
         <h2>Wedge cell</h2>
-        <p>Visualization of the wedge geometry and spatial variation across the cell.</p>
+        <p>Spatial variation across wedge geometry.</p>
         <video autoplay muted loop playsinline preload="auto">
           <source src="wedge.mp4" type="video/mp4">
-          Your browser does not support the video tag.
         </video>
-        <div class="small">File: <code>wedge.mp4</code></div>
       </article>
+
+      <!-- Optional extra row (for future videos) -->
+      <!--
+      <article class="card">
+        <h2>Extra view</h2>
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="TwistedState.mp4" type="video/mp4">
+        </video>
+      </article>
+
+      <article class="card">
+        <h2>Extra view 2</h2>
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="extra2.mp4" type="video/mp4">
+        </video>
+      </article>
+      -->
+
     </section>
 
     <div class="footer">
-      Scan the QR code on the poster to view all animations directly on your device.
+      Scan QR code to explore all animations.
     </div>
+
   </div>
 </body>
 </html>
