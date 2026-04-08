@@ -3,79 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ferroelectric Nematic Liquid Crystal Animations</title>
+  <title>Polarization-driven twisted states in ferroelectric nematic liquid crystals under confinement</title>
 
   <style>
     :root {
-      --bg: #f5f7fb;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --line: #dbe3ef;
-      --accent: #315b8a;
+      --bg: #eef2f6;
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-strong: rgba(255, 255, 255, 0.92);
+      --text: #1e293b;
+      --muted: #5f6b7a;
+      --line: rgba(120, 140, 170, 0.22);
+      --accent: #5d6fb3;
+      --accent-soft: #dfe6ff;
+      --shadow: 0 18px 40px rgba(31, 41, 55, 0.08);
+      --radius: 22px;
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Inter", Arial, Helvetica, sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
+      background:
+        radial-gradient(circle at top left, #f7f9fc 0%, #edf2f7 42%, #e6edf5 100%);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hero-screen {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-screen img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.68) saturate(1.02);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(16, 24, 40, 0.26), rgba(16, 24, 40, 0.48));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(960px, calc(100% - 32px));
+      text-align: center;
+      color: white;
+      padding: 32px 24px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
+      font-size: 0.92rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-content h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 1.08;
+      font-weight: 700;
+      text-wrap: balance;
+    }
+
+    .hero-content p {
+      max-width: 760px;
+      margin: 18px auto 0;
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      color: rgba(255,255,255,0.9);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(10px);
+    }
+
+    .main {
+      position: relative;
+      margin-top: -36px;
+      z-index: 3;
     }
 
     .wrap {
-      max-width: 1150px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 28px 20px 48px;
+      padding: 0 20px 56px;
     }
 
-    h1 {
-      margin: 0 0 10px;
-      font-size: 2rem;
-      line-height: 1.2;
-    }
-
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 860px;
-      line-height: 1.5;
-    }
-
-    .hero {
-      background: var(--card);
+    .intro-card {
+      background: var(--surface-strong);
       border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 22px;
-      box-shadow: 0 8px 26px rgba(17, 24, 39, 0.06);
+      border-radius: 28px;
+      padding: 26px 26px 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
       margin-bottom: 24px;
     }
 
+    .intro-card h2 {
+      margin: 0 0 8px;
+      font-size: 1.45rem;
+      color: var(--text);
+    }
+
+    .intro-card p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 920px;
+    }
+
     .section {
-      background: rgba(255,255,255,0.72);
+      background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 8px 26px rgba(17, 24, 39, 0.05);
-      margin-bottom: 22px;
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      margin-bottom: 24px;
     }
 
     .section-title {
       margin: 0 0 8px;
       font-size: 1.35rem;
       color: var(--accent);
+      letter-spacing: 0.01em;
     }
 
     .section-text {
       margin: 0 0 18px;
       color: var(--muted);
-      line-height: 1.55;
       font-size: 0.98rem;
-      max-width: 900px;
+      max-width: 940px;
     }
 
     .two-col {
@@ -96,22 +194,22 @@
     }
 
     .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: 0 8px 26px rgba(17, 24, 39, 0.05);
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(120, 140, 170, 0.18);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.05);
     }
 
     .card h3 {
       margin: 0 0 8px;
-      font-size: 1.08rem;
+      font-size: 1.06rem;
+      color: #243142;
     }
 
     .card p {
       margin: 0 0 12px;
       color: var(--muted);
-      line-height: 1.5;
       font-size: 0.95rem;
     }
 
@@ -119,144 +217,169 @@
     video {
       width: 100%;
       display: block;
-      border-radius: 12px;
+      border-radius: 14px;
       background: #000;
     }
 
     .footer {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.9rem;
       text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding: 10px 0 4px;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 860px) {
       .two-col,
       .two-video-row {
         grid-template-columns: 1fr;
+      }
+
+      .main {
+        margin-top: -20px;
+      }
+
+      .intro-card,
+      .section {
+        padding: 18px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
 
-    <section class="hero">
-      <h1>Ferroelectric Nematic Liquid Crystal Animations</h1>
-      <p class="subtitle">
-        This page follows the structure of the poster and presents molecular alignment, twist evolution,
-        and wedge-cell geometry using images and looping videos from different perspectives.
+  <!-- Full-screen landing image -->
+  <section class="hero-screen">
+    <img src="hero.jpg" alt="Ferroelectric nematic liquid crystal visual" />
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-tag">Interactive visual companion</div>
+      <h1>Polarization-driven twisted states in ferroelectric nematic liquid crystals under confinement</h1>
+      <p>
+        Scroll to explore molecular alignment, twist evolution, and wedge-cell geometry through rendered views and looping animations.
       </p>
-    </section>
-
-    <!-- SECTION 1 -->
-    <section class="section">
-      <h2 class="section-title">1. Synpolar cells</h2>
-      <p class="section-text">
-         On cooling from the isotropic phase through N and SmZA to N<sub>F</sub>, below 70&deg;C a uniform texture with conic defects appears first. At around ~1&deg;C below the transition, we observe structural changes
-resulting in the formation of twist domain walls. The domain walls separate domains with oppositely twisted states (see Figure on poster) revealed by de-crossing of the polarizers. 
-      </p>
-
-<!--
-      <div class="two-col">
-        <article class="card">
-          <h3>Static representation</h3>
-          <p>
-            Insert here a figure or rendered image that matches the poster panel and introduces the molecular arrangement.
-          </p>
-          <img src="Synpolar.png" alt="Static molecular configuration" />
-        </article>
--->
-        <article class="card">
-          <h3>Transition video</h3>
-          <p>
-            Animation of the state transition corresponding to the static representation shown on the left.
-          </p>
-          <video autoplay muted loop playsinline preload="auto">
-            <source src="5um_Synpolar Cell_Transition.mp4" type="video/mp4" />
-          </video>
-        </article>
-      </div>
-    </section>
-
-    <!-- SECTION 2 -->
-    <section class="section">
-      <h2 class="section-title">2. Multiple Perspectives of Director Evolution</h2>
-      <p class="section-text">
-        This section collects animations of the same process from several viewing directions.
-        The first row shows one large main animation, followed by two complementary views in the next row.
-      </p>
-
-      <div class="single-video-row">
-        <article class="card">
-          <h3>Main animation</h3>
-          <p>
-            Main visualization of the molecular evolution across the full sequence.
-          </p>
-          <video autoplay muted loop playsinline preload="auto">
-            <source src="Three States.mp4" type="video/mp4" />
-          </video>
-        </article>
-      </div>
-
-      <div class="two-video-row">
-        <article class="card">
-          <h3>Side view</h3>
-          <p>
-            Side perspective highlighting thickness-related changes and orientation.
-          </p>
-          <video autoplay muted loop playsinline preload="auto">
-            <source src="UniformState.mp4" type="video/mp4" />
-          </video>
-        </article>
-
-        <article class="card">
-          <h3>Additional view</h3>
-          <p>
-            Complementary perspective for comparison with the main animation.
-          </p>
-          <video autoplay muted loop playsinline preload="auto">
-            <source src="MezotwistedState.mp4" type="video/mp4" />
-          </video>
-        </article>
-      </div>
-    </section>
-
-    <!-- SECTION 3 -->
-    <section class="section">
-      <h2 class="section-title">3. Wedge Cell Geometry</h2>
-      <p class="section-text">
-        This section focuses on the wedge-cell model and its spatial variation.
-        Two videos are shown side by side to compare different wedge-cell views.
-      </p>
-
-      <div class="two-video-row">
-        <article class="card">
-          <h3>Wedge cell — view 1</h3>
-          <p>
-            First wedge-cell visualization showing the variation across the sample geometry.
-          </p>
-          <video autoplay muted loop playsinline preload="auto">
-            <source src="Wedge cell.mp4" type="video/mp4" />
-          </video>
-        </article>
-
-        <article class="card">
-          <h3>Wedge cell — view 2</h3>
-          <p>
-            Second wedge-cell view from a different perspective.
-          </p>
-          <video autoplay muted loop playsinline preload="auto">
-            <source src="WedgeCell_side.mp4" type="video/mp4" />
-          </video>
-        </article>
-      </div>
-    </section>
-
-    <div class="footer">
-      Scan the QR code on the poster to open these visualizations on your device.
     </div>
 
-  </div>
+    <a class="scroll-hint" href="#content">Scroll to explore ↓</a>
+  </section>
+
+  <!-- Main site -->
+  <main class="main" id="content">
+    <div class="wrap">
+
+      <section class="intro-card">
+        <h2>Ferroelectric Nematic Liquid Crystal Animations</h2>
+        <p>
+          This page follows the structure of the poster and presents molecular alignment, twist evolution, and wedge-cell geometry using still images and looping videos from different perspectives.
+        </p>
+      </section>
+
+      <!-- SECTION 1 -->
+      <section class="section">
+        <h2 class="section-title">1. Synpolar cells</h2>
+        <p class="section-text">
+          On cooling from the isotropic phase through N and SmZA to N<sub>F</sub>, below 70&deg;C a uniform texture with conic defects appears first. At around ~1&deg;C below the transition, structural changes are observed, resulting in the formation of twist domain walls. These walls separate domains with oppositely twisted states, revealed by de-crossing of the polarizers.
+        </p>
+
+        <div class="two-col">
+          <article class="card">
+            <h3>Poster figure</h3>
+            <p>
+              Static image corresponding to the synpolar cell configuration shown on the poster.
+            </p>
+            <img src="Synpolar.png" alt="Synpolar cell figure" />
+          </article>
+
+          <article class="card">
+            <h3>Transition video</h3>
+            <p>
+              Animation of the state transition associated with the synpolar cell configuration.
+            </p>
+            <video autoplay muted loop playsinline preload="auto">
+              <source src="5um_Synpolar Cell_Transition.mp4" type="video/mp4" />
+            </video>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION 2 -->
+      <section class="section">
+        <h2 class="section-title">2. Multiple perspectives of director evolution</h2>
+        <p class="section-text">
+          This section collects animations of the same process from several viewpoints. The first row shows the main animation, followed by two complementary rendered perspectives below.
+        </p>
+
+        <div class="single-video-row">
+          <article class="card">
+            <h3>Main animation</h3>
+            <p>
+              Main visualization of the molecular evolution across the full sequence.
+            </p>
+            <video autoplay muted loop playsinline preload="auto">
+              <source src="Three States.mp4" type="video/mp4" />
+            </video>
+          </article>
+        </div>
+
+        <div class="two-video-row">
+          <article class="card">
+            <h3>Uniform state</h3>
+            <p>
+              Side perspective highlighting the initial configuration before the twist develops.
+            </p>
+            <video autoplay muted loop playsinline preload="auto">
+              <source src="UniformState.mp4" type="video/mp4" />
+            </video>
+          </article>
+
+          <article class="card">
+            <h3>Mesotwisted state</h3>
+            <p>
+              Complementary perspective illustrating the intermediate twisted configuration.
+            </p>
+            <video autoplay muted loop playsinline preload="auto">
+              <source src="MezotwistedState.mp4" type="video/mp4" />
+            </video>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION 3 -->
+      <section class="section">
+        <h2 class="section-title">3. Wedge cell geometry</h2>
+        <p class="section-text">
+          This section focuses on the wedge-cell model and its spatial variation. Two videos are shown side by side to compare the same geometry from different viewpoints.
+        </p>
+
+        <div class="two-video-row">
+          <article class="card">
+            <h3>Wedge cell — main view</h3>
+            <p>
+              Visualization of the wedge geometry and spatial variation across the sample.
+            </p>
+            <video autoplay muted loop playsinline preload="auto">
+              <source src="Wedge cell.mp4" type="video/mp4" />
+            </video>
+          </article>
+
+          <article class="card">
+            <h3>Wedge cell — side view</h3>
+            <p>
+              Side perspective emphasizing thickness variation and molecular arrangement.
+            </p>
+            <video autoplay muted loop playsinline preload="auto">
+              <source src="WedgeCell_side.mp4" type="video/mp4" />
+            </video>
+          </article>
+        </div>
+      </section>
+
+      <div class="footer">
+        Scan the QR code on the poster to open these visualizations on your device.
+      </div>
+
+    </div>
+  </main>
+
 </body>
 </html>
